@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Darktint Studio | Solfilm & Chrome Delete</title>
+    <link rel="stylesheet" href="public/css/styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">
+                <span>DARK</span>TINT STUDIO
+            </div>
+            <div class="menu-toggle" id="mobile-menu">
+                <i data-lucide="menu"></i>
+            </div>
+            <ul class="nav-links">
+                <li><a href="#tjenester">Tjenester</a></li>
+                <li><a href="#om-oss">Om oss</a></li>
+                <li><a href="#kontakt">Kontakt</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section id="hero" class="hero fade-in">
+            <div class="hero-content">
+                <h1>Beskytt og stiliser din bil</h1>
+                <p>Spesialister på solfilm og chrome delete. Vi gir bilen din et moderne utseende og økt komfort.</p>
+                <a href="#kontakt" class="btn primary-btn">Få et tilbud</a>
+            </div>
+        </section>
+
+        <section id="tjenester" class="reveal">
+            <h2>Våre Tjenester</h2>
+            <div class="services-grid">
+                <div class="service-card">
+                    <i data-lucide="shield-check"></i>
+                    <h3>Solfilm</h3>
+                    <p>Høykvalitets solfilm som reduserer varme, innsyn og UV-stråling. Gir bilen et eksklusivt uttrykk.</p>
+                </div>
+                <div class="service-card">
+                    <i data-lucide="layers"></i>
+                    <h3>Chrome Delete</h3>
+                    <p>Fjerning av kromdetaljer med sort folie for et mer aggressivt og moderne utseende.</p>
+                </div>
+                <div class="service-card">
+                    <i data-lucide="sparkles"></i>
+                    <h3>Bilpleie</h3>
+                    <p>Vi tilbyr også enkel utvendig vask og vedlikehold for å holde bilen din i topp stand.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="om-oss" class="reveal">
+            <div class="about-container">
+                <div class="about-text">
+                    <h2>Om oss</h2>
+                    <p>Darktint Studio holder til i hjertet av byen og har lang erfaring med bilstyling. Vi brenner for detaljer og kvalitet, og bruker kun de beste materialene på markedet.</p>
+                    <p>Vårt mål er at alle kunder skal kjøre ut fra vårt verksted med et smil om munnen og en bil som skiller seg ut.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="kontakt" class="reveal">
+            <h2>Kontakt oss</h2>
+            <div class="contact-container">
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <i data-lucide="map-pin"></i>
+                        <p>Gateveien 123, 0000 Oslo</p>
+                    </div>
+                    <div class="contact-item">
+                        <i data-lucide="phone"></i>
+                        <p>+47 99 88 77 66</p>
+                    </div>
+                    <div class="contact-item">
+                        <i data-lucide="mail"></i>
+                        <p>post@darktintstudio.no</p>
+                    </div>
+                </div>
+                <form class="contact-form">
+                    <input type="text" placeholder="Navn" required>
+                    <input type="email" placeholder="E-post" required>
+                    <textarea placeholder="Melding" rows="5" required></textarea>
+                    <button type="submit" class="btn secondary-btn">Send melding</button>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Darktint Studio. Alle rettigheter reservert.</p>
+    </footer>
+
+    <script src="public/js/script.js"></script>
+    <script>
+      lucide.createIcons();
+    </script>
+</body>
+</html>
