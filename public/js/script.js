@@ -6,10 +6,17 @@ document.addEventListener('DOMContentLoaded', () => {
         for (let i = 0; i < revealElements.length; i++) {
             const windowHeight = window.innerHeight;
             const elementTop = revealElements[i].getBoundingClientRect().top;
-            const elementVisible = 150;
+            const elementBottom = revealElements[i].getBoundingClientRect().bottom;
+            const elementVisible = 100;
             
-            if (elementTop < windowHeight - elementVisible) {
+            // Sjekker om toppen av elementet er synlig (scrolling ned)
+            // ELLER om bunnen av elementet er synlig (scrolling opp)
+            if (elementTop < windowHeight - elementVisible && elementBottom > elementVisible) {
                 revealElements[i].classList.add('active');
+            } else {
+                // Fjerner klassen når elementet er utenfor skjermen
+                // Dette gjør at det animeres på nytt når man scroller tilbake
+                revealElements[i].classList.remove('active');
             }
         }
     };
@@ -17,7 +24,7 @@ document.addEventListener('DOMContentLoaded', () => {
     window.addEventListener('scroll', revealOnScroll);
     revealOnScroll(); // Run once on load
     
-    // Smooth scrolling for navigation links
+    // Smooth scrolling for navigation links (only for anchors on the same page)
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
             e.preventDefault();

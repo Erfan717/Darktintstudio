@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kontakt | Darktint Studio</title>
+    <link rel="stylesheet" href="/css/styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">
+                <a href="index.html" style="text-decoration: none; color: inherit;">
+                    <img src="/images/logo.png" alt="Darktint Studio Logo" style="height: 40px; vertical-align: middle;">
+                </a>
+            </div>
+            <div class="menu-toggle" id="mobile-menu">
+                <i data-lucide="menu"></i>
+            </div>
+            <ul class="nav-links">
+                <li><a href="tjenester.html">Tjenester</a></li>
+                <li><a href="showcase.html">Showcase</a></li>
+                <li><a href="om-oss.html">Om oss</a></li>
+                <li><a href="kontakt.html">Kontakt</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section id="kontakt" class="reveal active">
+            <h2>Kontakt oss</h2>
+            <div class="contact-container">
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <i data-lucide="map-pin"></i>
+                        <p>Gangdalslia 42</p>
+                    </div>
+                    <div class="contact-item">
+                        <i data-lucide="phone"></i>
+                        <p>+47 99 88 77 66</p>
+                    </div>
+                    <div class="contact-item">
+                        <i data-lucide="mail"></i>
+                        <p>post@darktintstudio.no</p>
+                    </div>
+                </div>
+                <form class="contact-form">
+                    <input type="text" placeholder="Navn" required>
+                    <input type="email" placeholder="E-post" required>
+                    <textarea placeholder="Melding" rows="5" required></textarea>
+                    <button type="submit" class="btn secondary-btn">Send melding</button>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Darktint Studio. Alle rettigheter reservert.</p>
+    </footer>
+
+    <script type="module" src="/js/script.js"></script>
+    <script>
+      lucide.createIcons();
+    </script>
+</body>
+</html>
