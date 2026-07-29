@@ -18,10 +18,10 @@
                     <img src="/images/logo.png" alt="Darktint Studio Logo" style="height: 40px; vertical-align: middle;">
                 </a>
             </div>
-            <div class="menu-toggle" id="mobile-menu">
+            <button class="menu-toggle" id="mobile-menu" type="button">
                 <i data-lucide="menu"></i>
-            </div>
-            <ul class="nav-links">
+            </button>
+            <ul class="nav-links" id="nav-links">
                 <li><a href="tjenester.html">Tjenester</a></li>
                 <li><a href="showcase.html">Showcase</a></li>
                 <li><a href="om-oss.html">Om oss</a></li>
@@ -112,7 +112,17 @@
                 <form class="contact-form">
                     <input type="text" placeholder="Navn" required>
                     <input type="email" placeholder="E-post" required>
-                    <textarea placeholder="Melding" rows="5" required></textarea>
+                    <select name="tjeneste" required>
+                        <option value="" disabled selected>Velg tjeneste</option>
+                        <option value="tinting-av-vindu">Tinting av vindu</option>
+                        <option value="chrome-delete">Chrome delete</option>
+                        <option value="soting-av-lykter">Soting av lykter</option>
+                        <option value="innvendig-og-utvendig-vask">Innvendig og utvendig vask</option>
+                        <option value="annet">Annet</option>
+                    </select>
+                    <input type="text" placeholder="Bilmerke" required>
+                    <input type="text" placeholder="Modell" required>
+                    <textarea placeholder="Melding - Valgfritt" rows="5"></textarea>
                     <button type="submit" class="btn secondary-btn">Send melding</button>
                 </form>
             </div>

@@ -1,4 +1,67 @@
 document.addEventListener('DOMContentLoaded', () => {
+    // Mobile hamburger menu
+    const menuToggle = document.getElementById('mobile-menu');
+    const navLinks = document.querySelector('.nav-links');
+
+    if (menuToggle && navLinks) {
+        const backdrop = document.createElement('div');
+        backdrop.className = 'nav-backdrop';
+        document.body.appendChild(backdrop);
+
+        const setIcon = (name) => {
+            menuToggle.innerHTML = `<i data-lucide="${name}"></i>`;
+            if (window.lucide) {
+                window.lucide.createIcons();
+            }
+        };
+
+        const closeMenu = () => {
+            navLinks.classList.remove('active');
+            backdrop.classList.remove('active');
+            document.body.classList.remove('nav-open');
+            menuToggle.setAttribute('aria-expanded', 'false');
+            setIcon('menu');
+        };
+
+        const openMenu = () => {
+            navLinks.classList.add('active');
+            backdrop.classList.add('active');
+            document.body.classList.add('nav-open');
+            menuToggle.setAttribute('aria-expanded', 'true');
+            setIcon('x');
+        };
+
+        menuToggle.setAttribute('aria-controls', 'nav-links');
+        menuToggle.setAttribute('aria-expanded', 'false');
+        menuToggle.setAttribute('aria-label', 'Åpne meny');
+
+        menuToggle.addEventListener('click', () => {
+            if (navLinks.classList.contains('active')) {
+                closeMenu();
+            } else {
+                openMenu();
+            }
+        });
+
+        backdrop.addEventListener('click', closeMenu);
+
+        navLinks.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', closeMenu);
+        });
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                closeMenu();
+            }
+        });
+
+        window.addEventListener('resize', () => {
+            if (window.innerWidth > 768) {
+                closeMenu();
+            }
+        });
+    }
+
     // Reveal elements on scroll
     const revealElements = document.querySelectorAll('.reveal');
     
