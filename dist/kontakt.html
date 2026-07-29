@@ -3,12 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tjenester | Darktint Studio</title>
+    <title>Kontakt | Darktint Studio</title>
     <link rel="stylesheet" href="/css/styles.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700&display=swap" rel="stylesheet">
     <script src="https://unpkg.com/lucide@latest"></script>
+  <script type="module" crossorigin src="/assets/modulepreload-polyfill-Dezn_h7o.js"></script>
 </head>
 <body>
     <header>
@@ -31,25 +32,29 @@
     </header>
 
     <main>
-        <section id="tjenester" class="reveal active">
-            <h2>Våre Tjenester</h2>
-            <div class="services-grid">
-                <div class="service-card">
-                    <h3>Tinting av vindu</h3>
-                    <p>Høykvalitets solfilm som reduserer varme, innsyn og UV-stråling. Gir bilen et eksklusivt uttrykk.</p>
+        <section id="kontakt" class="reveal active">
+            <h2>Kontakt oss</h2>
+            <div class="contact-container">
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <i data-lucide="map-pin"></i>
+                        <p>Gangdalslia 42</p>
+                    </div>
+                    <div class="contact-item">
+                        <i data-lucide="phone"></i>
+                        <p>+47 99 88 77 66</p>
+                    </div>
+                    <div class="contact-item">
+                        <i data-lucide="mail"></i>
+                        <p>post@darktintstudio.no</p>
+                    </div>
                 </div>
-                <div class="service-card">
-                    <h3>Chrome delete</h3>
-                    <p>Fjerning av kromdetaljer med sort folie for et mer aggressivt og moderne utseende.</p>
-                </div>
-                <div class="service-card">
-                    <h3>Soting av lykter</h3>
-                    <p>Diskret toning av lykter for et mørkere og mer helhetlig uttrykk, samtidig som vi legger vekt på en pen og jevn finish.</p>
-                </div>
-                <div class="service-card">
-                    <h3>Innvendig og utvendig vask</h3>
-                    <p>Vi tilbyr grundig innvendig og utvendig vask for å holde bilen din i topp stand.</p>
-                </div>
+                <form class="contact-form">
+                    <input type="text" placeholder="Navn" required>
+                    <input type="email" placeholder="E-post" required>
+                    <textarea placeholder="Melding" rows="5" required></textarea>
+                    <button type="submit" class="btn secondary-btn">Send melding</button>
+                </form>
             </div>
         </section>
     </main>

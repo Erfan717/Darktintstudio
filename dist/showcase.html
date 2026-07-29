@@ -3,12 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tjenester | Darktint Studio</title>
+    <title>Showcase | Darktint Studio</title>
     <link rel="stylesheet" href="/css/styles.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700&display=swap" rel="stylesheet">
     <script src="https://unpkg.com/lucide@latest"></script>
+  <script type="module" crossorigin src="/assets/modulepreload-polyfill-Dezn_h7o.js"></script>
 </head>
 <body>
     <header>
@@ -31,24 +32,20 @@
     </header>
 
     <main>
-        <section id="tjenester" class="reveal active">
-            <h2>Våre Tjenester</h2>
-            <div class="services-grid">
-                <div class="service-card">
-                    <h3>Tinting av vindu</h3>
-                    <p>Høykvalitets solfilm som reduserer varme, innsyn og UV-stråling. Gir bilen et eksklusivt uttrykk.</p>
-                </div>
-                <div class="service-card">
-                    <h3>Chrome delete</h3>
-                    <p>Fjerning av kromdetaljer med sort folie for et mer aggressivt og moderne utseende.</p>
-                </div>
-                <div class="service-card">
-                    <h3>Soting av lykter</h3>
-                    <p>Diskret toning av lykter for et mørkere og mer helhetlig uttrykk, samtidig som vi legger vekt på en pen og jevn finish.</p>
-                </div>
-                <div class="service-card">
-                    <h3>Innvendig og utvendig vask</h3>
-                    <p>Vi tilbyr grundig innvendig og utvendig vask for å holde bilen din i topp stand.</p>
+        <section id="showcase" class="reveal active">
+            <h2>Vårt Arbeid</h2>
+            <p style="text-align: center; margin-bottom: 3rem; max-width: 800px; margin-left: auto; margin-right: auto;">
+                Her er et utvalg av biler vi har jobbet med.
+            </p>
+            
+            <div class="services-grid showcase-grid">
+                <!-- Porsche Bilde Seksjon -->
+                <div class="service-card showcase-card" style="padding: 0; overflow: hidden; background: #1a1a1a; border-radius: 10px;">
+                    <img class="showcase-image" src="/images/porsche.png" alt="Porsche">
+                    <div style="padding: 1.5rem;">
+                        <h3>Porsche 911</h3>
+                        <p>Beskrivelse av utført arbeid.</p>
+                    </div>
                 </div>
             </div>
         </section>
