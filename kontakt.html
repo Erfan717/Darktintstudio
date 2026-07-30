@@ -48,9 +48,12 @@
                         <p>post@darktintstudio.no</p>
                     </div>
                 </div>
-                <form class="contact-form">
-                    <input type="text" placeholder="Navn" required>
-                    <input type="email" placeholder="E-post" required>
+                <form class="contact-form" action="https://formsubmit.co/kontakt@darktintstudio.no" method="POST">
+                    <input type="hidden" name="_subject" value="Ny henvendelse fra nettsiden">
+                    <input type="hidden" name="_template" value="table">
+                    <input type="hidden" name="_captcha" value="false">
+                    <input type="text" name="Navn" placeholder="Navn" required>
+                    <input type="email" name="E-post" placeholder="E-post" required>
                     <select name="tjeneste" required>
                         <option value="" disabled selected>Velg tjeneste</option>
                         <option value="solfilm">Solfilm</option>
@@ -59,8 +62,8 @@
                         <option value="innvendig-og-utvendig-vask">Innvendig og utvendig vask</option>
                         <option value="annet">Annet</option>
                     </select>
-                    <input type="text" placeholder="Skilt nummer" required>
-                    <textarea placeholder="Melding - Valgfritt" rows="5"></textarea>
+                    <input type="text" name="Skilt nummer" placeholder="Skilt nummer" required>
+                    <textarea name="Melding" placeholder="Melding - Valgfritt" rows="5"></textarea>
                     <button type="submit" class="btn secondary-btn">Send melding</button>
                 </form>
             </div>

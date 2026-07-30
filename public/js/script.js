@@ -113,4 +113,49 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     });
+
+    // Contact form submission via FormSubmit AJAX
+    document.querySelectorAll('.contact-form').forEach(form => {
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const btn = form.querySelector('button[type="submit"]');
+            const originalText = btn.textContent;
+            btn.textContent = 'Sender...';
+            btn.disabled = true;
+
+            try {
+                const formData = new FormData(form);
+                const response = await fetch(form.action, {
+                    method: 'POST',
+                    body: formData,
+                    headers: { 'Accept': 'application/json' }
+                });
+
+                if (response.ok) {
+                    btn.textContent = 'Sendt!';
+                    btn.style.background = '#2ecc71';
+                    btn.style.borderColor = '#2ecc71';
+                    form.reset();
+                    setTimeout(() => {
+                        btn.textContent = originalText;
+                        btn.style.background = '';
+                        btn.style.borderColor = '';
+                        btn.disabled = false;
+                    }, 3000);
+                } else {
+                    throw new Error('Send feilet');
+                }
+            } catch (err) {
+                btn.textContent = 'Feil - prøv igjen';
+                btn.style.background = '#e74c3c';
+                btn.style.borderColor = '#e74c3c';
+                setTimeout(() => {
+                    btn.textContent = originalText;
+                    btn.style.background = '';
+                    btn.style.borderColor = '';
+                    btn.disabled = false;
+                }, 3000);
+            }
+        });
+    });
 });
