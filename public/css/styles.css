@@ -121,7 +121,10 @@ h2 {
 
 /* Hero Section */
 .hero {
-    background: linear-gradient(rgba(0,0,0,0.68), rgba(0,0,0,0.68)), url('/images/porsche.png');
+    background:
+        linear-gradient(rgba(0,0,0,0.68), rgba(0,0,0,0.68)),
+        url('/images/hero.jpg'),
+        url('/images/porsche.png');
     background-size: cover;
     background-position: center;
     height: 100vh;
