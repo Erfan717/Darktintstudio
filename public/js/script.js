@@ -101,4 +101,16 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     });
+
+    // Flip service cards on click (only one flipped at a time)
+    const serviceCards = document.querySelectorAll('.service-card');
+    serviceCards.forEach(card => {
+        card.addEventListener('click', () => {
+            const wasFlipped = card.classList.contains('flipped');
+            serviceCards.forEach(c => c.classList.remove('flipped'));
+            if (!wasFlipped) {
+                card.classList.add('flipped');
+            }
+        });
+    });
 });
