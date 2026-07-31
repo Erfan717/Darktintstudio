@@ -123,6 +123,15 @@ document.addEventListener('DOMContentLoaded', () => {
             btn.textContent = 'Sender...';
             btn.disabled = true;
 
+            let msgEl = form.querySelector('.form-message');
+            if (!msgEl) {
+                msgEl = document.createElement('p');
+                msgEl.className = 'form-message';
+                form.appendChild(msgEl);
+            }
+            msgEl.textContent = '';
+            msgEl.className = 'form-message';
+
             try {
                 const formData = new FormData(form);
                 const response = await fetch(form.action, {
@@ -132,29 +141,18 @@ document.addEventListener('DOMContentLoaded', () => {
                 });
 
                 if (response.ok) {
-                    btn.textContent = 'Sendt!';
-                    btn.style.background = '#2ecc71';
-                    btn.style.borderColor = '#2ecc71';
                     form.reset();
-                    setTimeout(() => {
-                        btn.textContent = originalText;
-                        btn.style.background = '';
-                        btn.style.borderColor = '';
-                        btn.disabled = false;
-                    }, 3000);
+                    msgEl.textContent = 'Takk for henvendelsen! Vi tar kontakt med deg så snart som mulig.';
+                    msgEl.classList.add('form-message--success');
                 } else {
                     throw new Error('Send feilet');
                 }
             } catch (err) {
-                btn.textContent = 'Feil - prøv igjen';
-                btn.style.background = '#e74c3c';
-                btn.style.borderColor = '#e74c3c';
-                setTimeout(() => {
-                    btn.textContent = originalText;
-                    btn.style.background = '';
-                    btn.style.borderColor = '';
-                    btn.disabled = false;
-                }, 3000);
+                msgEl.textContent = 'Noe gikk galt. Prøv igjen eller send oss en e-post direkte.';
+                msgEl.classList.add('form-message--error');
+            } finally {
+                btn.textContent = originalText;
+                btn.disabled = false;
             }
         });
     });
