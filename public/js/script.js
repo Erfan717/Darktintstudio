@@ -144,4 +144,46 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     });
+
+    // Newsletter form submission via Brevo, without leaving the page
+    document.querySelectorAll('.newsletter-form').forEach(form => {
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const btn = form.querySelector('button[type="submit"]');
+            const originalText = btn.textContent;
+            btn.textContent = 'Sender...';
+            btn.disabled = true;
+
+            let msgEl = form.querySelector('.form-message');
+            if (!msgEl) {
+                msgEl = document.createElement('p');
+                msgEl.className = 'form-message';
+                form.appendChild(msgEl);
+            }
+            msgEl.textContent = '';
+            msgEl.className = 'form-message';
+
+            try {
+                const formData = new FormData(form);
+                // Brevo's form endpoint doesn't return CORS headers, so the
+                // response can't be read (mode: 'no-cors'). A network-level
+                // failure still lands in the catch block below.
+                await fetch(form.action, {
+                    method: 'POST',
+                    body: formData,
+                    mode: 'no-cors'
+                });
+
+                form.reset();
+                msgEl.textContent = 'Sjekk e-posten din for å bekrefte påmeldingen!';
+                msgEl.classList.add('form-message--success');
+            } catch (err) {
+                msgEl.textContent = 'Noe gikk galt. Prøv igjen senere.';
+                msgEl.classList.add('form-message--error');
+            } finally {
+                btn.textContent = originalText;
+                btn.disabled = false;
+            }
+        });
+    });
 });

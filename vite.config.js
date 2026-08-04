@@ -13,6 +13,7 @@ export default defineConfig({
                 chromeDelete: 'chrome-delete.html',
                 sotingAvLykter: 'soting-av-lykter.html',
                 bilvask: 'bilvask.html',
+                bekreftet: 'bekreftet.html',
             },
         },
     },
