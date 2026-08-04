@@ -729,11 +729,34 @@ h2 {
 
 .contact-container {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr 1.4fr;
     gap: 4rem;
     align-items: start;
+}
+
+.contact-section .contact-container {
+    grid-template-columns: 1fr 1fr;
     max-width: 1100px;
     margin: 0 auto;
+}
+
+.contact-container--compact {
+    gap: 2rem;
+}
+
+.contact-container--compact .contact-item {
+    gap: 1rem;
+}
+
+.contact-container--compact .contact-item svg {
+    width: 50px;
+    height: 50px;
+    padding: 13px;
+}
+
+.contact-container--compact .contact-item p,
+.contact-container--compact .contact-item a {
+    font-size: 1.15rem;
 }
 
 .contact-info {
@@ -774,13 +797,12 @@ h2 {
     margin-top: 0.6rem;
 }
 
-.contact-item i {
+.contact-item svg {
     flex-shrink: 0;
     width: 42px;
     height: 42px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    padding: 10px;
+    box-sizing: border-box;
     border-radius: 50%;
     border: 1px solid rgba(255, 255, 255, 0.12);
     color: var(--accent-color);
@@ -792,10 +814,10 @@ h2 {
     flex-direction: column;
     gap: 1.6rem;
     background: linear-gradient(180deg, rgba(255, 255, 255, 0.035), rgba(255, 255, 255, 0.015));
-    border: 1px solid rgba(200, 182, 154, 0.28);
+    border: 1px solid rgba(255, 255, 255, 0.1);
     border-radius: 20px;
     padding: 2.75rem;
-    box-shadow: 0 0 0 1px rgba(200, 182, 154, 0.06), 0 20px 60px rgba(0, 0, 0, 0.35), 0 0 40px rgba(200, 182, 154, 0.06);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.35);
 }
 
 .form-field {
@@ -836,7 +858,7 @@ h2 {
 .form-field input:focus,
 .form-field textarea:focus,
 .form-field select:focus {
-    border-color: var(--accent-color);
+    border-color: rgba(255, 255, 255, 0.5);
 }
 
 .form-field input:focus + label,
@@ -848,7 +870,7 @@ h2 {
     top: -0.9rem;
     font-size: 0.75rem;
     letter-spacing: 0.05em;
-    color: var(--accent-color);
+    color: var(--text-color);
 }
 
 .contact-form select {
@@ -856,7 +878,7 @@ h2 {
     appearance: none;
     -webkit-appearance: none;
     -moz-appearance: none;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='none' stroke='%23c8b69a' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' viewBox='0 0 24 24'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='none' stroke='%23ffffff' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' viewBox='0 0 24 24'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");
     background-repeat: no-repeat;
     background-position: right 0.2rem center;
     padding-right: 2rem;
