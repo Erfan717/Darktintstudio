@@ -740,6 +740,18 @@ h2 {
 }
 
 /* Footer */
+footer:not(.site-footer) {
+    padding: 1.8rem 10%;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    background-color: #050505;
+    text-align: center;
+}
+
+footer:not(.site-footer) p {
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.62);
+}
+
 .site-footer {
     padding: 2.5rem 10% 3rem;
     border-top: 1px solid rgba(255, 255, 255, 0.05);
