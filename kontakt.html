@@ -31,40 +31,86 @@
     </header>
 
     <main>
-        <section id="kontakt" class="reveal active">
-            <h2>Kontakt oss</h2>
-            <div class="contact-container">
-                <div class="contact-info">
+        <div class="breadcrumb-bar">
+            <div class="breadcrumb" role="navigation" aria-label="Brødsmulesti">
+                <a href="index.html">Hjem</a> / <span class="current">Kontakt oss</span>
+            </div>
+        </div>
+
+        <section class="visit-section reveal active">
+            <div class="visit-container">
+                <div class="visit-text">
+                    <h2>Besøk oss</h2>
+                    <p>Velkommen til Darktint Studio! Vi er lokalisert i Gangdalslia 42, midt i hjertet av Kristiansand.</p>
+                    <p>Enten du er en potensiell kunde, samarbeidspartner eller bare nysgjerrig, inviterer vi deg til å komme og besøke oss.</p>
+                    <p>Vennligst ta kontakt for å avtale et besøkstidspunkt som passer deg best.</p>
                     <div class="contact-item">
                         <i data-lucide="map-pin"></i>
-                        <p>Gangdalslia 42</p>
+                        <a href="https://www.google.com/maps/dir/?api=1&destination=Gangdalslia%2042" target="_blank" rel="noopener noreferrer">Gangdalslia 42</a>
+                    </div>
+                </div>
+                <div class="visit-map">
+                    <iframe
+                        src="https://www.google.com/maps?q=Gangdalslia%2042&output=embed"
+                        title="Kart til Darktint Studio"
+                        loading="lazy"
+                        referrerpolicy="no-referrer-when-downgrade">
+                    </iframe>
+                </div>
+            </div>
+        </section>
+
+        <section id="kontakt" class="contact-section reveal active">
+            <div class="contact-container">
+                <div class="contact-info">
+                    <h2 class="contact-heading">Kontaktskjema</h2>
+                    <p>For å avtale et besøkstidspunkt som passer deg best, vennligst benytt vårt kontaktskjema.</p>
+                    <p>Et medlem av teamet vårt vil da kontakte deg for å koordinere et passende tidspunkt. Du kan også nå oss via telefon på <a href="tel:+4799887766">+47 99 88 77 66</a> eller via e-post på <a href="mailto:post@darktintstudio.no">post@darktintstudio.no</a>.</p>
+                    <div class="contact-item">
+                        <i data-lucide="mail"></i>
+                        <a href="mailto:post@darktintstudio.no">post@darktintstudio.no</a>
                     </div>
                     <div class="contact-item">
                         <i data-lucide="phone"></i>
-                        <p>+47 99 88 77 66</p>
-                    </div>
-                    <div class="contact-item">
-                        <i data-lucide="mail"></i>
-                        <p>post@darktintstudio.no</p>
+                        <a href="tel:+4799887766">+47 99 88 77 66</a>
                     </div>
                 </div>
                 <form class="contact-form" action="https://formsubmit.co/post@darktintstudio.no" method="POST">
                     <input type="hidden" name="_subject" value="Ny henvendelse fra nettsiden">
                     <input type="hidden" name="_template" value="table">
                     <input type="hidden" name="_captcha" value="false">
-                    <input type="text" name="Navn" placeholder="Navn" required>
-                    <input type="email" name="email" placeholder="E-post" required>
-                    <select name="tjeneste" required>
-                        <option value="" disabled selected>Velg tjeneste</option>
-                        <option value="solfilm">Solfilm</option>
-                        <option value="chrome-delete">Chrome delete</option>
-                        <option value="soting-av-lykter">Soting av lykter</option>
-                        <option value="innvendig-og-utvendig-vask">Innvendig og utvendig vask</option>
-                        <option value="annet">Annet</option>
-                    </select>
-                    <input type="text" name="Skilt nummer" placeholder="Skilt nummer" required>
-                    <textarea name="Melding" placeholder="Melding - Valgfritt" rows="5"></textarea>
-                    <button type="submit" class="btn secondary-btn">Få pris tilbud</button>
+                    <div class="form-field">
+                        <input type="text" name="Navn" id="navn" placeholder=" " required>
+                        <label for="navn">Navn</label>
+                    </div>
+                    <div class="form-field">
+                        <input type="email" name="email" id="epost" placeholder=" " required>
+                        <label for="epost">E-post</label>
+                    </div>
+                    <div class="form-field">
+                        <select name="tjeneste" id="tjeneste" required>
+                            <option value="" disabled selected></option>
+                            <option value="solfilm">Solfilm</option>
+                            <option value="chrome-delete">Chrome delete</option>
+                            <option value="soting-av-lykter">Soting av lykter</option>
+                            <option value="innvendig-og-utvendig-vask">Innvendig og utvendig vask</option>
+                            <option value="annet">Annet</option>
+                        </select>
+                        <label for="tjeneste">Velg tjeneste</label>
+                    </div>
+                    <div class="form-field">
+                        <input type="text" name="Skilt nummer" id="skiltnummer" placeholder=" " required>
+                        <label for="skiltnummer">Skilt nummer</label>
+                    </div>
+                    <div class="form-field">
+                        <textarea name="Melding" id="melding" placeholder=" " rows="4"></textarea>
+                        <label for="melding">Melding - Valgfritt</label>
+                    </div>
+                    <label class="form-consent">
+                        <input type="checkbox" name="samtykke" required>
+                        <span>Jeg samtykker til behandling av personopplysninger.</span>
+                    </label>
+                    <button type="submit" class="btn form-submit-btn">Få pris tilbud</button>
                 </form>
             </div>
         </section>
