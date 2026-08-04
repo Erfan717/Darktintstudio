@@ -749,7 +749,7 @@ h2 {
 
 .footer-content {
     display: grid;
-    grid-template-columns: 1.4fr 1fr 0.8fr;
+    grid-template-columns: 1.2fr 0.8fr 0.8fr 1.2fr;
     gap: 2rem;
     margin-bottom: 1.4rem;
     align-items: start;
@@ -801,6 +801,61 @@ h2 {
 .footer-links a:hover,
 .footer-socials a:hover {
     color: var(--accent-color);
+}
+
+.footer-newsletter h3 {
+    font-size: 0.82rem;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.8);
+    margin-bottom: 0.35rem;
+}
+
+.footer-newsletter p {
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.62);
+    margin-bottom: 0.9rem;
+}
+
+.newsletter-form {
+    display: flex;
+    flex-direction: column;
+    gap: 0.7rem;
+}
+
+.newsletter-form input[type="email"] {
+    padding: 0.8rem 1rem;
+    background-color: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    color: white;
+    border-radius: var(--radius);
+    outline: none;
+    transition: var(--transition);
+    font-family: 'Inter', sans-serif;
+    font-size: 0.9rem;
+}
+
+.newsletter-form input[type="email"]::placeholder {
+    color: rgba(255, 255, 255, 0.4);
+}
+
+.newsletter-form input[type="email"]:focus {
+    border-color: var(--accent-color);
+}
+
+.newsletter-form .btn {
+    align-self: flex-start;
+    padding: 0.7rem 1.4rem;
+    font-size: 0.85rem;
+}
+
+.newsletter-honeypot {
+    position: absolute;
+    left: -9999px;
+    width: 1px;
+    height: 1px;
+    opacity: 0;
 }
 
 /* Animations */
@@ -1041,6 +1096,11 @@ h2 {
 
     .footer-content {
         grid-template-columns: 1fr;
+    }
+
+    .newsletter-form .btn {
+        align-self: stretch;
+        text-align: center;
     }
 }
 
