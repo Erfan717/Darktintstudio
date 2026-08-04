@@ -1255,6 +1255,17 @@ footer:not(.site-footer) p {
         gap: 1rem;
     }
 
+    .contact-container--compact .contact-item svg {
+        width: 44px;
+        height: 44px;
+        padding: 11px;
+    }
+
+    .contact-container--compact .contact-item p,
+    .contact-container--compact .contact-item a {
+        font-size: 1.1rem;
+    }
+
     .visit-container {
         grid-template-columns: 1fr;
         gap: 2.5rem;
