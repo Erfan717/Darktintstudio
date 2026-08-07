@@ -69,7 +69,7 @@ nav {
 .site-logo {
     display: block;
     width: auto;
-    height: 92px;
+    height: 64px;
     object-fit: contain;
 }
 
@@ -477,23 +477,19 @@ h2 {
 .why-choose-us {
     width: min(100%, 1100px);
     margin: 3.5rem auto 0;
-    padding: 2rem;
     display: grid;
-    gap: 1.8rem;
-    background: rgba(255, 255, 255, 0.02);
-    border: 1px solid rgba(255, 255, 255, 0.06);
-    border-radius: var(--radius);
+    gap: 3rem;
 }
 
 .why-intro {
     display: grid;
-    gap: 0.45rem;
+    gap: 0.6rem;
     justify-items: center;
     text-align: center;
 }
 
 .section-label {
-    font-size: 0.8rem;
+    font-size: 1.3rem;
     text-transform: uppercase;
     letter-spacing: 0.2em;
     color: var(--accent-color);
@@ -502,24 +498,37 @@ h2 {
 
 .why-intro h3 {
     margin: 0;
-    font-size: 1.25rem;
+    font-size: clamp(1.6rem, 3vw, 2.2rem);
+    font-weight: 500;
     color: var(--text-color);
 }
 
 .why-grid {
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 1.25rem;
+    gap: 2.5rem;
+    counter-reset: why-count;
 }
 
 .why-grid > div {
-    padding-top: 1rem;
-    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    counter-increment: why-count;
+    text-align: left;
+}
+
+.why-grid > div::before {
+    content: counter(why-count, decimal-leading-zero) ".";
+    display: block;
+    font-size: clamp(3rem, 6vw, 4.5rem);
+    font-weight: 600;
+    line-height: 1;
+    color: var(--accent-color);
+    margin-bottom: 1.5rem;
 }
 
 .why-grid h4 {
-    font-size: 1rem;
-    margin: 0 0 0.45rem;
+    font-size: 1.05rem;
+    font-weight: 600;
+    margin: 0 0 0.5rem;
     color: var(--text-color);
 }
 
@@ -531,7 +540,7 @@ h2 {
 
 .location-map {
     width: min(100%, 1100px);
-    margin: 4rem auto 0;
+    margin: 6rem auto 0;
     display: grid;
     grid-template-columns: minmax(0, 1fr) auto;
     align-items: center;
@@ -962,7 +971,7 @@ footer:not(.site-footer) p {
 
 .footer-content {
     display: grid;
-    grid-template-columns: 1.2fr 0.8fr 0.8fr 1.2fr;
+    grid-template-columns: 1.2fr 0.8fr 0.8fr 0.8fr 1.2fr;
     gap: 2rem;
     margin-bottom: 1.4rem;
     align-items: start;
@@ -988,6 +997,7 @@ footer:not(.site-footer) p {
 }
 
 .footer-links,
+.footer-contact,
 .footer-socials {
     display: flex;
     flex-direction: column;
@@ -995,8 +1005,9 @@ footer:not(.site-footer) p {
 }
 
 .footer-links h3,
+.footer-contact h3,
 .footer-socials h3 {
-    font-size: 0.82rem;
+    font-size: 0.95rem;
     font-weight: 600;
     letter-spacing: 0.2em;
     text-transform: uppercase;
@@ -1005,6 +1016,7 @@ footer:not(.site-footer) p {
 }
 
 .footer-links a,
+.footer-contact a,
 .footer-socials a {
     color: rgba(255, 255, 255, 0.72);
     text-decoration: none;
@@ -1012,12 +1024,13 @@ footer:not(.site-footer) p {
 }
 
 .footer-links a:hover,
+.footer-contact a:hover,
 .footer-socials a:hover {
     color: var(--accent-color);
 }
 
 .footer-newsletter h3 {
-    font-size: 0.82rem;
+    font-size: 0.95rem;
     font-weight: 600;
     letter-spacing: 0.2em;
     text-transform: uppercase;
@@ -1218,7 +1231,7 @@ footer:not(.site-footer) p {
     }
 
     .site-logo {
-        height: 68px;
+        height: 48px;
     }
 
     .service-lead {
@@ -1291,6 +1304,24 @@ footer:not(.site-footer) p {
 
     .about-photo span {
         font-size: 3.5rem;
+    }
+
+    .why-choose-us {
+        margin-top: 2.5rem;
+        gap: 2rem;
+    }
+
+    .why-grid {
+        grid-template-columns: 1fr;
+        gap: 2.25rem;
+    }
+
+    .why-grid > div {
+        text-align: center;
+    }
+
+    .why-grid > div::before {
+        margin: 0 auto 1rem;
     }
 
     .location-map {
