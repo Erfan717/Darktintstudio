@@ -62,6 +62,69 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    // Smooth accordion animation for FAQ items, one open at a time
+    const faqItems = document.querySelectorAll('.faq-item');
+
+    const closeFaqItem = (item) => {
+        const answer = item.querySelector('.faq-answer');
+        if (!item.open || !answer) return;
+
+        answer.style.height = answer.scrollHeight + 'px';
+        requestAnimationFrame(() => {
+            requestAnimationFrame(() => {
+                answer.style.height = '0px';
+            });
+        });
+
+        answer.addEventListener('transitionend', function handler(e) {
+            if (e.propertyName !== 'height') return;
+            answer.removeEventListener('transitionend', handler);
+            item.open = false;
+            answer.style.height = '';
+        });
+    };
+
+    const openFaqItem = (item) => {
+        const answer = item.querySelector('.faq-answer');
+        if (!answer) return;
+
+        item.open = true;
+        answer.style.height = '0px';
+        const targetHeight = answer.scrollHeight + 'px';
+
+        requestAnimationFrame(() => {
+            requestAnimationFrame(() => {
+                answer.style.height = targetHeight;
+            });
+        });
+
+        answer.addEventListener('transitionend', function handler(e) {
+            if (e.propertyName !== 'height') return;
+            answer.removeEventListener('transitionend', handler);
+            answer.style.height = 'auto';
+        });
+    };
+
+    faqItems.forEach(item => {
+        const summary = item.querySelector('summary');
+        if (!summary) return;
+
+        summary.addEventListener('click', (e) => {
+            e.preventDefault();
+            const wasOpen = item.open;
+
+            faqItems.forEach(other => {
+                if (other !== item && other.open) closeFaqItem(other);
+            });
+
+            if (wasOpen) {
+                closeFaqItem(item);
+            } else {
+                openFaqItem(item);
+            }
+        });
+    });
+
     // Reveal elements on scroll
     const revealElements = document.querySelectorAll('.reveal');
     
