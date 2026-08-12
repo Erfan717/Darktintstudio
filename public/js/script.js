@@ -62,6 +62,26 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    // Match the service-page image gallery height to the text column,
+    // so the images line up with the heading above and the last sentence below
+    const syncServiceGallery = () => {
+        document.querySelectorAll('.service-body').forEach(body => {
+            const content = body.querySelector('.service-content');
+            const gallery = body.querySelector('.service-gallery');
+            if (!content || !gallery) return;
+
+            if (window.innerWidth <= 768) {
+                gallery.style.height = '';
+            } else {
+                gallery.style.height = content.offsetHeight + 'px';
+            }
+        });
+    };
+
+    syncServiceGallery();
+    window.addEventListener('load', syncServiceGallery);
+    window.addEventListener('resize', syncServiceGallery);
+
     // Smooth accordion animation for FAQ items, one open at a time
     const faqItems = document.querySelectorAll('.faq-item');
 

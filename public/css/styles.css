@@ -1,11 +1,13 @@
 :root {
-    --bg-color: #050505;
-    --text-color: #f3efe9;
-    --accent-color: #c8b69a;
-    --accent-strong: #d9c8a8;
-    --secondary-bg: #101112;
-    --muted-color: rgba(243, 239, 233, 0.74);
-    --radius: 0px;
+    --bg-color: #121212;
+    --surface-color: #1b1b1b;
+    --text-color: #ededeb;
+    --accent-color: #a89880;
+    --accent-strong: #c2b39c;
+    --secondary-bg: #1b1b1b;
+    --muted-color: rgba(237, 237, 235, 0.66);
+    --radius: 3px;
+    --radius-lg: 6px;
     --transition: all 0.3s ease;
 }
 
@@ -22,12 +24,8 @@ html {
 body {
     font-family: 'Inter', sans-serif;
     background-color: var(--bg-color);
-    background-image: linear-gradient(90deg, rgba(255,255,255,0.015) 0, rgba(255,255,255,0.015) 1px, transparent 1px),
-        linear-gradient(180deg, rgba(255,255,255,0.02) 0, rgba(255,255,255,0.02) 1px, transparent 1px);
-    background-size: 100% 100%, 100% 100%;
     color: var(--text-color);
     line-height: 1.6;
-    letter-spacing: 0.01em;
     overflow-x: hidden;
 }
 
@@ -36,7 +34,7 @@ header {
     top: 0;
     width: 100%;
     padding: 0.6rem 5%;
-    background: rgba(5, 5, 5, 0.92);
+    background: rgba(18, 18, 18, 0.86);
     backdrop-filter: blur(12px);
     z-index: 1000;
     border-bottom: 1px solid rgba(255, 255, 255, 0.06);
@@ -135,12 +133,13 @@ section + section {
 }
 
 h2 {
-    font-size: 1.7rem;
+    font-size: 2rem;
+    font-weight: 600;
     margin-bottom: 1.8rem;
     text-align: center;
-    text-transform: uppercase;
-    letter-spacing: 0.2em;
-    color: #f7f7f7;
+    text-transform: none;
+    letter-spacing: -0.01em;
+    color: var(--text-color);
 }
 
 /* Hero Section */
@@ -148,7 +147,7 @@ h2 {
     position: relative;
     isolation: isolate;
     background:
-        linear-gradient(90deg, rgba(3, 3, 3, 0.86) 0%, rgba(7, 8, 10, 0.62) 100%),
+        linear-gradient(90deg, rgba(16, 16, 16, 0.86) 0%, rgba(20, 20, 20, 0.62) 100%),
         url('/images/porsche.png');
     background-size: cover;
     background-position: center;
@@ -162,7 +161,7 @@ h2 {
     content: '';
     position: absolute;
     inset: 0;
-    background: linear-gradient(90deg, rgba(5, 5, 5, 0.95) 0%, rgba(5, 5, 5, 0.35) 55%, rgba(5, 5, 5, 0.1) 100%);
+    background: linear-gradient(90deg, rgba(18, 18, 18, 0.95) 0%, rgba(18, 18, 18, 0.35) 55%, rgba(18, 18, 18, 0.1) 100%);
     z-index: -1;
 }
 
@@ -178,10 +177,11 @@ h2 {
 
 .hero h1 {
     font-size: clamp(2.35rem, 4vw, 4.1rem);
-    line-height: 1.02;
+    font-weight: 600;
+    line-height: 1.05;
     margin-bottom: 1.2rem;
     animation: fadeInUp 1s ease forwards;
-    letter-spacing: -0.025em;
+    letter-spacing: -0.02em;
     max-width: 700px;
 }
 
@@ -189,7 +189,7 @@ h2 {
     font-size: 1.02rem;
     max-width: 590px;
     margin: 0 0 2.2rem;
-    color: rgba(243, 239, 233, 0.8);
+    color: var(--muted-color);
     opacity: 0;
     animation: fadeInUp 1s ease 0.3s forwards;
 }
@@ -200,18 +200,18 @@ h2 {
     border: none;
     border-radius: var(--radius);
     cursor: pointer;
-    font-weight: 600;
+    font-weight: 500;
     text-decoration: none;
     transition: var(--transition);
     display: inline-block;
-    letter-spacing: 0.16em;
-    text-transform: uppercase;
+    letter-spacing: 0;
+    text-transform: none;
     box-shadow: none;
 }
 
 .primary-btn {
     background: var(--accent-color);
-    color: #060606;
+    color: var(--bg-color);
 }
 
 .primary-btn:hover {
@@ -245,37 +245,39 @@ h2 {
     text-align: center;
     min-height: 260px;
     padding: 2.25rem 1.75rem;
-    background: transparent;
-    border: 1px solid rgba(255, 255, 255, 0.08);
+    background: var(--surface-color);
+    border: 1px solid rgba(255, 255, 255, 0.06);
     border-radius: var(--radius);
     text-decoration: none;
     color: var(--text-color);
     box-shadow: none;
-    transition: transform 0.3s ease, border-color 0.3s ease;
+    transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
 .service-card:hover {
-    transform: translateY(-3px);
-    border-color: rgba(200, 182, 154, 0.45);
+    transform: translateY(-2px);
+    border-color: rgba(168, 152, 128, 0.4);
+    box-shadow: 0 16px 32px rgba(0, 0, 0, 0.24);
 }
 
 .service-card h3 {
-    font-size: 1.5rem;
+    font-size: 1.4rem;
+    font-weight: 600;
     margin-bottom: 1rem;
 }
 
 .service-card p {
     font-size: 1rem;
     line-height: 1.6;
-    color: rgba(255, 255, 255, 0.75);
+    color: var(--muted-color);
 }
 
 .card-hint {
     margin-top: 1.5rem;
     font-size: 0.85rem;
-    font-weight: 700;
-    letter-spacing: 0.5px;
-    color: rgba(255, 255, 255, 0.5);
+    font-weight: 500;
+    letter-spacing: 0.3px;
+    color: rgba(255, 255, 255, 0.45);
     transition: color 0.3s ease;
 }
 
@@ -313,10 +315,11 @@ h2 {
 }
 
 .service-detail h1 {
-    font-size: 2.75rem;
+    font-size: 2.6rem;
+    font-weight: 600;
     margin-bottom: 1.25rem;
-    text-transform: uppercase;
-    letter-spacing: 2px;
+    text-transform: none;
+    letter-spacing: -0.01em;
 }
 
 .service-lead {
@@ -326,10 +329,8 @@ h2 {
 }
 
 .service-content h2 {
-    font-size: 1.5rem;
+    font-size: 1.4rem;
     text-align: left;
-    text-transform: none;
-    letter-spacing: 0;
     margin: 2.5rem 0 1rem;
 }
 
@@ -367,16 +368,18 @@ h2 {
 }
 
 .gallery-grid {
-    display: grid;
-    grid-template-columns: 1fr;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
     gap: 1.25rem;
 }
 
 .gallery-grid img {
     width: 100%;
-    aspect-ratio: 4 / 3;
+    flex: 1;
+    min-height: 0;
     object-fit: cover;
-    border-radius: 10px;
+    border-radius: var(--radius-lg);
     border: 1px solid rgba(255, 255, 255, 0.08);
 }
 
@@ -452,7 +455,7 @@ h2 {
     border-radius: var(--radius);
     background:
         linear-gradient(rgba(10, 10, 10, 0.1), rgba(10, 10, 10, 0.3)),
-        linear-gradient(135deg, #151515, #252525);
+        linear-gradient(135deg, #1c1c1c, #262626);
     background-size: cover;
     background-position: center;
     border: 1px solid rgba(255, 255, 255, 0.08);
@@ -489,10 +492,11 @@ h2 {
 }
 
 .section-label {
-    font-size: 1.3rem;
-    text-transform: uppercase;
-    letter-spacing: 0.2em;
-    color: var(--accent-color);
+    font-size: 2rem;
+    font-weight: 600;
+    text-transform: none;
+    letter-spacing: -0.01em;
+    color: var(--text-color);
     margin: 0;
 }
 
@@ -519,7 +523,7 @@ h2 {
     content: counter(why-count, decimal-leading-zero) ".";
     display: block;
     font-size: clamp(3rem, 6vw, 4.5rem);
-    font-weight: 600;
+    font-weight: 500;
     line-height: 1;
     color: var(--accent-color);
     margin-bottom: 1.5rem;
@@ -588,7 +592,7 @@ h2 {
     min-height: auto;
     padding-top: 70px;
     padding-bottom: 70px;
-    background: #070707;
+    background: var(--surface-color);
     border-top: 1px solid rgba(255, 255, 255, 0.05);
 }
 
@@ -623,8 +627,9 @@ h2 {
     margin-bottom: 2rem;
     color: var(--text-color);
     font-size: 1.6rem;
+    font-weight: 600;
     text-align: center;
-    text-transform: uppercase;
+    text-transform: none;
 }
 
 .mission-panel p {
@@ -702,7 +707,7 @@ h2 {
 
 .visit-map {
     border: 1px solid rgba(255, 255, 255, 0.08);
-    border-radius: 12px;
+    border-radius: var(--radius-lg);
     overflow: hidden;
 }
 
@@ -727,9 +732,9 @@ h2 {
 
 .faq-heading {
     font-size: clamp(2.2rem, 4vw, 3rem);
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 1px;
+    font-weight: 600;
+    text-transform: none;
+    letter-spacing: -0.01em;
     margin: 0 0 2.5rem;
     text-align: left;
 }
@@ -883,11 +888,11 @@ h2 {
     display: flex;
     flex-direction: column;
     gap: 1.6rem;
-    background: linear-gradient(180deg, rgba(255, 255, 255, 0.035), rgba(255, 255, 255, 0.015));
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 20px;
+    background: var(--surface-color);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: var(--radius-lg);
     padding: 2.75rem;
-    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.35);
+    box-shadow: none;
 }
 
 .form-field {
@@ -928,7 +933,7 @@ h2 {
 .form-field input:focus,
 .form-field textarea:focus,
 .form-field select:focus {
-    border-color: rgba(255, 255, 255, 0.5);
+    border-color: var(--accent-color);
 }
 
 .form-field input:focus + label,
@@ -981,7 +986,7 @@ h2 {
 
 .form-submit-btn {
     align-self: flex-start;
-    border-radius: 999px;
+    border-radius: var(--radius);
     background: transparent;
     border: 1px solid var(--accent-color);
     color: var(--text-color);
@@ -990,14 +995,14 @@ h2 {
 
 .form-submit-btn:hover {
     background: var(--accent-color);
-    color: #060606;
+    color: var(--bg-color);
     transform: translateY(-2px);
 }
 
 .form-message {
     margin-top: 0.5rem;
     padding: 1rem;
-    border-radius: 5px;
+    border-radius: var(--radius);
     font-size: 0.95rem;
     text-align: center;
     display: none;
@@ -1024,7 +1029,7 @@ h2 {
 footer:not(.site-footer) {
     padding: 1.8rem 10%;
     border-top: 1px solid rgba(255, 255, 255, 0.05);
-    background-color: #050505;
+    background-color: var(--bg-color);
     text-align: center;
 }
 
@@ -1036,7 +1041,7 @@ footer:not(.site-footer) p {
 .site-footer {
     padding: 2.5rem 10% 3rem;
     border-top: 1px solid rgba(255, 255, 255, 0.05);
-    background-color: #050505;
+    background-color: var(--bg-color);
     color: rgba(255, 255, 255, 0.6);
 }
 
@@ -1223,7 +1228,7 @@ footer:not(.site-footer) p {
         align-items: stretch;
         gap: 0;
         padding: 6rem 2rem 2rem;
-        background: #101010;
+        background: var(--surface-color);
         border-left: 1px solid rgba(255, 255, 255, 0.08);
         box-shadow: -10px 0 40px rgba(0, 0, 0, 0.5);
         transform: translateX(100%);
@@ -1257,7 +1262,6 @@ footer:not(.site-footer) p {
     h2 {
         font-size: 1.85rem;
         margin-bottom: 2rem;
-        letter-spacing: 2px;
     }
 
     .hero {
@@ -1317,6 +1321,15 @@ footer:not(.site-footer) p {
     .service-body {
         grid-template-columns: 1fr;
         gap: 2.5rem;
+    }
+
+    .gallery-grid {
+        height: auto;
+    }
+
+    .gallery-grid img {
+        flex: none;
+        aspect-ratio: 4 / 3;
     }
 
     .service-cta {

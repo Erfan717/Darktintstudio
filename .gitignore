@@ -4,3 +4,4 @@ dist/
 .venv/
 .claude/settings.local.json
 .idea/
+source-media/
