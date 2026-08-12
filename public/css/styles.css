@@ -285,9 +285,9 @@ h2 {
 
 /* Service detail pages */
 .service-detail {
-    max-width: 1150px;
+    max-width: 1600px;
     margin: 0 auto;
-    padding-top: 140px;
+    padding: 140px 5% 100px;
     min-height: auto;
     display: block;
 }
