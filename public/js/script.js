@@ -269,4 +269,50 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     });
+
+    // Showcase project modal: clone the card's <template> into the dialog
+    const showcaseGrid = document.querySelector('.showcase-grid');
+    const showcaseModal = document.getElementById('showcase-modal');
+
+    if (showcaseGrid && showcaseModal) {
+        const modalContent = showcaseModal.querySelector('.showcase-modal__content');
+        const closeBtn = showcaseModal.querySelector('.showcase-modal__close');
+        let lastFocused = null;
+
+        const openModal = (template) => {
+            modalContent.innerHTML = '';
+            modalContent.appendChild(template.content.cloneNode(true));
+            showcaseModal.hidden = false;
+            document.body.classList.add('nav-open');
+            if (closeBtn) closeBtn.focus();
+        };
+
+        const closeModal = () => {
+            showcaseModal.hidden = true;
+            document.body.classList.remove('nav-open');
+            modalContent.innerHTML = '';
+            if (lastFocused) lastFocused.focus();
+        };
+
+        showcaseGrid.querySelectorAll('.showcase-card').forEach(card => {
+            const trigger = card.querySelector('.showcase-card__trigger');
+            const template = card.querySelector('.showcase-card__detail');
+            if (!trigger || !template) return;
+
+            trigger.addEventListener('click', () => {
+                lastFocused = trigger;
+                openModal(template);
+            });
+        });
+
+        showcaseModal.querySelectorAll('[data-close]').forEach(el => {
+            el.addEventListener('click', closeModal);
+        });
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && !showcaseModal.hidden) {
+                closeModal();
+            }
+        });
+    }
 });

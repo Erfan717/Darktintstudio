@@ -33,11 +33,122 @@
     <main>
         <section id="showcase" class="reveal active">
             <h2>Vårt Arbeid</h2>
-            <p style="text-align: center; margin-bottom: 3rem; max-width: 800px; margin-left: auto; margin-right: auto;">
-                Vi bygger for tiden opp en samling av prosjekter vi er stolte av. Følg med her – snart kan du se et utvalg av bilene vi har jobbet med.
+            <p class="showcase-intro">
+                Et utvalg av biler vi har jobbet med. Trykk på en bil for å se flere bilder og hva som ble gjort.
             </p>
+
+            <div class="showcase-grid">
+                <article class="showcase-card">
+                    <button class="showcase-card__trigger" type="button" aria-haspopup="dialog">
+                        <img src="/images/golf-gti-mk6-1.jpg" alt="Volkswagen Golf GTI MK6" loading="lazy">
+                        <span class="showcase-card__body">
+                            <span class="showcase-card__title">Volkswagen Golf GTI MK6</span>
+                            <span class="showcase-card__hint">Se prosjektet</span>
+                        </span>
+                    </button>
+                    <template class="showcase-card__detail">
+                        <div class="showcase-detail">
+                            <h3>Volkswagen Golf GTI MK6</h3>
+                            <p class="showcase-detail__tag">Solfilm · 35 %</p>
+                            <div class="showcase-detail__text">
+                                <p>
+                                    Solfilm med 35 % lysgjennomgang på de to fremre dørrutene.
+                                    Gir et rent, mørkere uttrykk, mindre innsyn og reduserer
+                                    varme og blending fra solen.
+                                </p>
+                            </div>
+                            <div class="showcase-detail__compare">
+                                <div class="showcase-detail__col">
+                                    <p class="showcase-detail__label">Før:</p>
+                                    <img src="/images/golf-gti-mk6-3.jpg" alt="Golf GTI MK6 før soting – bilde 1" loading="lazy">
+                                    <img src="/images/golf-gti-mk6-4.jpg" alt="Golf GTI MK6 før soting – bilde 2" loading="lazy">
+                                </div>
+                                <div class="showcase-detail__col">
+                                    <p class="showcase-detail__label">Etter:</p>
+                                    <img src="/images/golf-gti-mk6-1.jpg" alt="Golf GTI MK6 etter soting – bilde 1" loading="lazy">
+                                    <img src="/images/golf-gti-mk6-2.jpg" alt="Golf GTI MK6 etter soting – bilde 2" loading="lazy">
+                                </div>
+                            </div>
+                        </div>
+                    </template>
+                </article>
+
+                <article class="showcase-card">
+                    <button class="showcase-card__trigger" type="button" aria-haspopup="dialog">
+                        <img src="/images/bmw-3-serie-3.jpg" alt="BMW 3-serie" loading="lazy">
+                        <span class="showcase-card__body">
+                            <span class="showcase-card__title">BMW 3-serie</span>
+                            <span class="showcase-card__hint">Se prosjektet</span>
+                        </span>
+                    </button>
+                    <template class="showcase-card__detail">
+                        <div class="showcase-detail">
+                            <h3>BMW 3-serie</h3>
+                            <p class="showcase-detail__tag">Solfilm · 20 %</p>
+                            <div class="showcase-detail__text">
+                                <p>
+                                    Solfilm med 20 % lysgjennomgang på alle ruter bak B-stolpen.
+                                    Gir et mørkt, helhetlig uttrykk, bedre personvern i baksetet
+                                    og mindre varme og blending fra solen.
+                                </p>
+                            </div>
+                            <div class="showcase-detail__compare">
+                                <div class="showcase-detail__col">
+                                    <p class="showcase-detail__label">Før:</p>
+                                    <img src="/images/bmw-3-serie-1.jpg" alt="BMW 3-serie før soting – bilde 1" loading="lazy">
+                                    <img src="/images/bmw-3-serie-2.jpg" alt="BMW 3-serie før soting – bilde 2" loading="lazy">
+                                </div>
+                                <div class="showcase-detail__col">
+                                    <p class="showcase-detail__label">Etter:</p>
+                                    <img src="/images/bmw-3-serie-3.jpg" alt="BMW 3-serie etter soting – bilde 1" loading="lazy">
+                                    <img src="/images/bmw-3-serie-4.jpg" alt="BMW 3-serie etter soting – bilde 2" loading="lazy">
+                                </div>
+                            </div>
+                        </div>
+                    </template>
+                </article>
+
+                <article class="showcase-card">
+                    <button class="showcase-card__trigger" type="button" aria-haspopup="dialog">
+                        <img src="/images/porsche-panamera-1.jpg" alt="Porsche Panamera" loading="lazy">
+                        <span class="showcase-card__body">
+                            <span class="showcase-card__title">Porsche Panamera</span>
+                            <span class="showcase-card__hint">Se prosjektet</span>
+                        </span>
+                    </button>
+                    <template class="showcase-card__detail">
+                        <div class="showcase-detail">
+                            <h3>Porsche Panamera</h3>
+                            <p class="showcase-detail__tag">Solfilm · Kameleonfilm</p>
+                            <div class="showcase-detail__gallery">
+                                <img src="/images/porsche-panamera-1.jpg" alt="Porsche Panamera – bilde 1" loading="lazy">
+                                <img src="/images/porsche-panamera-2.jpg" alt="Porsche Panamera – bilde 2" loading="lazy">
+                            </div>
+                            <div class="showcase-detail__text">
+                                <p>
+                                    Solfilm på alle ruter for et mørkt, helhetlig uttrykk, bedre
+                                    personvern og mindre varme og blending fra solen.
+                                </p>
+                                <p>
+                                    På frontruta er det montert kameleonfilm (fargeskiftende
+                                    solfilm) som gir et rødlilla skjær som skifter nyanse etter
+                                    lysvinkel, samtidig som sikten fremover beholdes.
+                                </p>
+                            </div>
+                        </div>
+                    </template>
+                </article>
+            </div>
         </section>
     </main>
+
+    <div class="showcase-modal" id="showcase-modal" hidden>
+        <div class="showcase-modal__backdrop" data-close></div>
+        <div class="showcase-modal__dialog" role="dialog" aria-modal="true" aria-label="Prosjektdetaljer">
+            <button class="showcase-modal__close" type="button" data-close aria-label="Lukk">&times;</button>
+            <div class="showcase-modal__content"></div>
+        </div>
+    </div>
 
     <footer>
         <p>&copy; 2026 Darktint Studio. Alle rettigheter reservert.</p>
