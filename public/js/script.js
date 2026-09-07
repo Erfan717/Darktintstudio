@@ -205,18 +205,38 @@ document.addEventListener('DOMContentLoaded', () => {
 
             try {
                 const formData = new FormData(form);
-                const response = await fetch(form.action, {
+                // The plain endpoint answers 200 with an HTML page even when it
+                // refuses to deliver, so a 200 says nothing. The /ajax/ endpoint
+                // returns JSON that states whether the message actually went out.
+                const url = form.action.replace(
+                    'https://formsubmit.co/',
+                    'https://formsubmit.co/ajax/'
+                );
+                const response = await fetch(url, {
                     method: 'POST',
                     body: formData,
                     headers: { 'Accept': 'application/json' }
                 });
 
-                if (response.ok) {
+                let result = null;
+                try {
+                    result = await response.json();
+                } catch (parseErr) {
+                    result = null;
+                }
+
+                // FormSubmit reports success as the string "true", not a boolean.
+                const delivered = result && String(result.success) === 'true';
+
+                if (delivered) {
                     form.reset();
                     msgEl.textContent = 'Takk for henvendelsen! Vi tar kontakt med deg så snart som mulig.';
                     msgEl.classList.add('form-message--success');
                 } else {
-                    throw new Error('Send feilet');
+                    console.warn('Skjemaet ble ikke levert av FormSubmit:', response.status, result);
+                    msgEl.textContent = 'Vi fikk ikke sendt henvendelsen. Ring oss på 400 45 037 ' +
+                        'eller send en e-post til post@darktintstudio.no.';
+                    msgEl.classList.add('form-message--error');
                 }
             } catch (err) {
                 msgEl.textContent = 'Noe gikk galt. Prøv igjen eller send oss en e-post direkte.';
