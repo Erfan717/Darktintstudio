@@ -248,18 +248,33 @@ document.addEventListener('DOMContentLoaded', () => {
 
             try {
                 const formData = new FormData(form);
-                // Brevo's form endpoint doesn't return CORS headers, so the
-                // response can't be read (mode: 'no-cors'). A network-level
-                // failure still lands in the catch block below.
-                await fetch(form.action, {
+                // Brevo's own form script posts to ?isAjax=1, which makes the
+                // endpoint answer with JSON instead of a full HTML page. It
+                // does send CORS headers, so the reply can be read directly.
+                const url = form.action + (form.action.includes('?') ? '&' : '?') + 'isAjax=1';
+                const res = await fetch(url, {
                     method: 'POST',
-                    body: formData,
-                    mode: 'no-cors'
+                    body: formData
                 });
 
-                form.reset();
-                msgEl.textContent = 'Sjekk e-posten din for å bekrefte påmeldingen!';
-                msgEl.classList.add('form-message--success');
+                let result = null;
+                try {
+                    result = await res.json();
+                } catch (parseErr) {
+                    result = null;
+                }
+
+                if (result && result.success) {
+                    form.reset();
+                    msgEl.textContent = result.message || 'Sjekk e-posten din for å bekrefte påmeldingen!';
+                    msgEl.classList.add('form-message--success');
+                } else {
+                    // Brevo answers in English whatever locale we send, so keep
+                    // the visible text Norwegian and log the detail instead.
+                    console.warn('Nyhetsbrev-påmelding avvist av Brevo:', res.status, result);
+                    msgEl.textContent = 'Vi fikk ikke registrert påmeldingen. Sjekk e-postadressen og prøv igjen.';
+                    msgEl.classList.add('form-message--error');
+                }
             } catch (err) {
                 msgEl.textContent = 'Noe gikk galt. Prøv igjen senere.';
                 msgEl.classList.add('form-message--error');
