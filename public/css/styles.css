@@ -1695,6 +1695,10 @@ footer:not(.site-footer) p {
         aspect-ratio: 4 / 3;
     }
 
+    .tint-scroll {
+        height: 118vh;
+    }
+
     .tint-scroll__sticky {
         top: 80px;
         height: auto;
