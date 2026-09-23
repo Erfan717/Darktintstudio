@@ -53,17 +53,65 @@
                 <h2>Slik jobber vi</h2>
                 <p>Vi starter med grundig rengjøring av alle vindusflater for å sikre et støvfritt og feilfritt resultat. Filmen skjæres presist etter bilens ruter, og monteres med fokus på jevne kanter og ingen luftbobler. Vi bruker kun kvalitetsfilm fra anerkjente leverandører.</p>
                 <p>Etter montering anbefaler vi å la rutene være lukket i noen dager slik at filmen får satt seg ordentlig. Vi går gjennom alt du trenger å vite før du henter bilen.</p>
-
-                <h2>Valg av tonefarge</h2>
-                <p>Vi tilbyr flere grader av toning, fra lett og diskret til helt mørkt. Vi hjelper deg gjerne med å velge en løsning som både passer bilen og holder seg innenfor gjeldende regelverk for frontruter og siderutene foran.</p>
             </div>
 
             <div class="service-gallery">
                 <div class="gallery-grid">
-                    <img src="/images/solfilm-1.svg" alt="Solfilm montert på bil">
-                    <img src="/images/solfilm-2.svg" alt="Solfilm ferdig resultat">
+                    <img src="/images/solfilm-1.svg" alt="Solfilm montert på bil" loading="lazy">
+                    <img src="/images/solfilm-2.svg" alt="Solfilm ferdig resultat" loading="lazy">
                 </div>
             </div>
+            </div>
+
+            <div class="tint-scroll-section">
+                <h2>Valg av tonefarge</h2>
+                <p>Vi tilbyr flere grader av toning, fra lett og diskret til helt mørkt. Vi hjelper deg gjerne med å velge en løsning som både passer bilen og holder seg innenfor gjeldende regelverk for frontruter og siderutene foran.</p>
+
+                <div class="tint-scroll" id="tintScroll">
+                    <div class="tint-scroll__sticky">
+                        <div class="tint-scroll__car-wrap">
+                            <img
+                                class="tint-scroll__car"
+                                src="/images/tint/car.webp"
+                                alt="Bil sett fra siden, bakre vinduer klargjort for solfilm"
+                                loading="lazy"
+                                width="1464"
+                                height="526"
+                            >
+                            <svg class="tint-scroll__overlay" viewBox="0 0 1464 526" preserveAspectRatio="xMidYMid meet" aria-hidden="true" focusable="false">
+                                <!-- Bakre siderute + hjørnevindu (bak B-stolpen), som ett sammenhengende felt -->
+                                <path class="tint-scroll__tint" d="M 863,67 L 929,69 L 990,74 L 1050,84 L 1102,96 L 1165,115 L 1198,125 L 1181,137 L 1163,143 L 1116,152 L 1003,164 L 920,170 L 840,174 L 850,128 Z" fill="#000"></path>
+                            </svg>
+                        </div>
+
+                        <div class="tint-scroll__badge" id="tintBadge">
+                            <span class="tint-scroll__percent" id="tintPercent">70 %</span>
+                            <span class="tint-scroll__label" id="tintLabel">Lett</span>
+                            <div class="tint-scroll__progress">
+                                <div class="tint-scroll__progress-bar" id="tintProgressBar"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tint-static-grid" aria-hidden="true">
+                    <div class="tint-static-card">
+                        <span class="tint-static-percent">70 %</span>
+                        <span class="tint-static-label">Lett</span>
+                    </div>
+                    <div class="tint-static-card">
+                        <span class="tint-static-percent">35 %</span>
+                        <span class="tint-static-label">Medium</span>
+                    </div>
+                    <div class="tint-static-card">
+                        <span class="tint-static-percent">20 %</span>
+                        <span class="tint-static-label">Mørk</span>
+                    </div>
+                    <div class="tint-static-card">
+                        <span class="tint-static-percent">5 %</span>
+                        <span class="tint-static-label">Limo</span>
+                    </div>
+                </div>
             </div>
 
             <div class="service-cta">
@@ -80,6 +128,7 @@
     </footer>
 
     <script type="module" src="/js/script.js"></script>
+    <script src="/js/solfilm-scroll.js" defer></script>
     <script>
       lucide.createIcons();
     </script>

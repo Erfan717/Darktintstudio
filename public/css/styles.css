@@ -191,6 +191,14 @@ h2 {
     .hero-video {
         display: none;
     }
+
+    .tint-scroll {
+        display: none;
+    }
+
+    .tint-static-grid {
+        display: grid;
+    }
 }
 
 .hero h1 {
@@ -415,6 +423,140 @@ h2 {
 .service-cta p {
     color: rgba(255, 255, 255, 0.78);
     margin-bottom: 1.75rem;
+}
+
+/* Valg av tonefarge - scrollstyrt tonings-animasjon */
+.tint-scroll-section {
+    margin-top: 3.5rem;
+    max-width: 1000px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.tint-scroll-section h2 {
+    font-size: 1.4rem;
+    margin-bottom: 1rem;
+}
+
+.tint-scroll-section > p {
+    color: rgba(255, 255, 255, 0.78);
+    max-width: 640px;
+    margin: 0 auto 2.5rem;
+    text-align: center;
+}
+
+.tint-scroll {
+    position: relative;
+    height: 250vh;
+}
+
+.tint-scroll__sticky {
+    position: sticky;
+    top: 100px;
+    height: calc(100vh - 100px);
+    min-height: 420px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1.5rem;
+}
+
+.tint-scroll__car-wrap {
+    position: relative;
+    width: min(100%, 1100px);
+    aspect-ratio: 1464 / 526;
+}
+
+.tint-scroll__car {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    border-radius: var(--radius-lg);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.tint-scroll__overlay {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+}
+
+.tint-scroll__tint {
+    fill: #000;
+    opacity: 0;
+    will-change: opacity;
+}
+
+.tint-scroll__badge {
+    display: flex;
+    align-items: center;
+    gap: 0.9rem;
+    padding: 0.7rem 1.25rem;
+    background: var(--surface-color);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: var(--radius);
+    font-variant-numeric: tabular-nums;
+}
+
+.tint-scroll__percent {
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: var(--accent-strong);
+}
+
+.tint-scroll__label {
+    font-size: 0.9rem;
+    color: var(--muted-color);
+    border-left: 1px solid rgba(255, 255, 255, 0.15);
+    padding-left: 0.9rem;
+}
+
+.tint-scroll__progress {
+    width: 90px;
+    height: 4px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 2px;
+    overflow: hidden;
+}
+
+.tint-scroll__progress-bar {
+    width: 0%;
+    height: 100%;
+    background: var(--accent-color);
+}
+
+/* Statisk fallback for prefers-reduced-motion */
+.tint-static-grid {
+    display: none;
+    grid-template-columns: repeat(2, minmax(140px, 1fr));
+    gap: 1rem;
+    max-width: 520px;
+}
+
+.tint-static-card {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+    padding: 1.25rem 1rem;
+    background: var(--surface-color);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: var(--radius);
+    text-align: center;
+}
+
+.tint-static-percent {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: var(--accent-strong);
+}
+
+.tint-static-label {
+    font-size: 0.85rem;
+    color: var(--muted-color);
 }
 
 /* About Section */
@@ -1392,7 +1534,9 @@ footer:not(.site-footer) p {
 
 .reveal.active {
     opacity: 1;
-    transform: translateY(0);
+    /* transform: none (ikke translateY(0)) - en transform-verdi på en forelder
+       ødelegger position: sticky for etterkommere i alle nettlesere. */
+    transform: none;
     visibility: visible;
 }
 
@@ -1549,6 +1693,23 @@ footer:not(.site-footer) p {
     .gallery-grid img {
         flex: none;
         aspect-ratio: 4 / 3;
+    }
+
+    .tint-scroll__sticky {
+        top: 80px;
+        height: calc(100vh - 80px);
+        min-height: 380px;
+    }
+
+    .tint-scroll__badge {
+        flex-wrap: wrap;
+        justify-content: center;
+        text-align: center;
+    }
+
+    .tint-scroll__label {
+        border-left: none;
+        padding-left: 0;
     }
 
     .service-cta {

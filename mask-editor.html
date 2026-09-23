@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Maske-editor – solfilm</title>
+<style>
+    :root { color-scheme: dark; }
+    * { box-sizing: border-box; }
+    body {
+        margin: 0;
+        font-family: 'Segoe UI', Arial, sans-serif;
+        background: #121212;
+        color: #ededeb;
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
+    }
+    header {
+        padding: 1rem 1.5rem;
+        border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+    header h1 { font-size: 1.1rem; margin: 0 0 0.25rem; font-weight: 600; }
+    header p { margin: 0; font-size: 0.85rem; color: rgba(255,255,255,0.6); }
+    .layout {
+        display: flex;
+        flex: 1;
+        min-height: 0;
+    }
+    .stage {
+        flex: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 2rem;
+        overflow: auto;
+    }
+    .stage svg {
+        width: 100%;
+        max-width: 1300px;
+        height: auto;
+        background: #fff;
+        border-radius: 6px;
+        touch-action: none;
+    }
+    .sidebar {
+        width: 340px;
+        flex-shrink: 0;
+        padding: 1.25rem;
+        border-left: 1px solid rgba(255,255,255,0.08);
+        overflow-y: auto;
+    }
+    .sidebar h2 {
+        font-size: 0.9rem;
+        text-transform: uppercase;
+        letter-spacing: 0.06em;
+        color: rgba(255,255,255,0.5);
+        margin: 0 0 0.6rem;
+    }
+    .field { margin-bottom: 1.25rem; }
+    .row { display: flex; align-items: center; gap: 0.6rem; margin-bottom: 0.5rem; }
+    input[type="range"] { flex: 1; }
+    button {
+        background: #a89880;
+        color: #121212;
+        border: none;
+        padding: 0.55rem 0.9rem;
+        border-radius: 4px;
+        font-weight: 600;
+        cursor: pointer;
+        font-size: 0.85rem;
+    }
+    button.secondary {
+        background: transparent;
+        border: 1px solid rgba(255,255,255,0.2);
+        color: #ededeb;
+    }
+    button:hover { opacity: 0.9; }
+    textarea {
+        width: 100%;
+        min-height: 90px;
+        background: #1b1b1b;
+        color: #c2b39c;
+        border: 1px solid rgba(255,255,255,0.15);
+        border-radius: 4px;
+        padding: 0.6rem;
+        font-family: 'Consolas', monospace;
+        font-size: 0.82rem;
+        resize: vertical;
+    }
+    .hint {
+        font-size: 0.78rem;
+        color: rgba(255,255,255,0.55);
+        line-height: 1.5;
+        margin-top: 0.4rem;
+    }
+    .pointlist { font-size: 0.78rem; color: rgba(255,255,255,0.7); line-height: 1.7; }
+    #statusMsg { font-size: 0.8rem; color: #a89880; min-height: 1.2em; }
+    circle.handle {
+        fill: #ffcf40;
+        stroke: #000;
+        stroke-width: 1;
+        cursor: grab;
+    }
+    circle.handle.selected { fill: #ff3b3b; }
+    circle.handle:active { cursor: grabbing; }
+    polygon#tintPoly { fill: #000; stroke: #ffcf40; stroke-width: 1.5; }
+</style>
+</head>
+<body>
+<header>
+    <h1>Maske-editor for solfilm.html</h1>
+    <p>Dra de gule punktene til de treffer vinduskantene nøyaktig. Dobbeltklikk på en linje for å legge til et punkt. Klikk et punkt og trykk Delete for å fjerne det. Kopier resultatet inn i &lt;path class="tint-scroll__tint"&gt; i solfilm.html.</p>
+</header>
+<div class="layout">
+    <div class="stage">
+        <svg id="svgRoot" viewBox="0 0 1464 526" xmlns="http://www.w3.org/2000/svg">
+            <image href="/images/tint/car.webp" x="0" y="0" width="1464" height="526"></image>
+            <polygon id="tintPoly" points=""></polygon>
+            <g id="handles"></g>
+        </svg>
+    </div>
+    <div class="sidebar">
+        <div class="field">
+            <h2>Forhåndsvis mørkhet</h2>
+            <div class="row">
+                <input type="range" id="opacitySlider" min="0" max="0.95" step="0.01" value="0.95">
+                <span id="opacityValue">95%</span>
+            </div>
+            <div class="row">
+                <button type="button" data-op="0.3">70% Lett</button>
+                <button type="button" data-op="0.65">35% Medium</button>
+                <button type="button" data-op="0.8">20% Mørk</button>
+                <button type="button" data-op="0.95">5% Limo</button>
+            </div>
+        </div>
+
+        <div class="field">
+            <h2>SVG-punkter (viewBox 0 0 1464 526)</h2>
+            <div id="pointList" class="pointlist"></div>
+        </div>
+
+        <div class="field">
+            <h2>Path for HTML</h2>
+            <textarea id="pathOutput" readonly></textarea>
+            <div class="row" style="margin-top:0.6rem;">
+                <button type="button" id="copyBtn">Kopier path</button>
+                <button type="button" id="resetBtn" class="secondary">Nullstill</button>
+            </div>
+            <div id="statusMsg"></div>
+        </div>
+
+        <div class="hint">
+            Lim den kopierte strengen inn i solfilm.html her:<br>
+            <code>&lt;path class="tint-scroll__tint" d="LIM_INN_HER" fill="#000"&gt;&lt;/path&gt;</code>
+        </div>
+    </div>
+</div>
+
+<script>
+(function () {
+    var svg = document.getElementById('svgRoot');
+    var poly = document.getElementById('tintPoly');
+    var handlesG = document.getElementById('handles');
+    var pathOutput = document.getElementById('pathOutput');
+    var pointList = document.getElementById('pointList');
+    var opacitySlider = document.getElementById('opacitySlider');
+    var opacityValue = document.getElementById('opacityValue');
+    var statusMsg = document.getElementById('statusMsg');
+
+    var DEFAULT_POINTS = [
+        [858, 80], [929, 84], [1000, 88], [1070, 94], [1140, 100],
+        [1165, 115], [1190, 130], [1170, 139], [1150, 148], [1075, 158],
+        [1000, 168], [924, 173], [848, 178], [853, 129]
+    ];
+
+    var points = DEFAULT_POINTS.map(function (p) { return p.slice(); });
+    var selectedIndex = -1;
+
+    function svgPoint(evt) {
+        var pt = svg.createSVGPoint();
+        pt.x = evt.clientX;
+        pt.y = evt.clientY;
+        var ctm = svg.getScreenCTM().inverse();
+        var loc = pt.matrixTransform(ctm);
+        return [Math.round(loc.x), Math.round(loc.y)];
+    }
+
+    function render() {
+        poly.setAttribute('points', points.map(function (p) { return p[0] + ',' + p[1]; }).join(' '));
+        poly.setAttribute('fill-opacity', opacitySlider.value);
+
+        handlesG.innerHTML = '';
+        points.forEach(function (p, i) {
+            var c = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+            c.setAttribute('cx', p[0]);
+            c.setAttribute('cy', p[1]);
+            c.setAttribute('r', 5.5);
+            c.setAttribute('class', 'handle' + (i === selectedIndex ? ' selected' : ''));
+            c.dataset.index = i;
+            c.addEventListener('pointerdown', onHandleDown);
+            handlesG.appendChild(c);
+        });
+
+        var d = 'M ' + points.map(function (p) { return p[0] + ',' + p[1]; }).join(' L ') + ' Z';
+        pathOutput.value = d;
+
+        pointList.innerHTML = points.map(function (p, i) {
+            return (i + 1) + '. (' + p[0] + ', ' + p[1] + ')';
+        }).join('<br>');
+
+        opacityValue.textContent = Math.round(opacitySlider.value * 100) + '%';
+    }
+
+    var dragIndex = -1;
+    function onHandleDown(evt) {
+        evt.preventDefault();
+        dragIndex = parseInt(evt.currentTarget.dataset.index, 10);
+        selectedIndex = dragIndex;
+        svg.setPointerCapture(evt.pointerId);
+        render();
+    }
+    svg.addEventListener('pointermove', function (evt) {
+        if (dragIndex === -1) return;
+        points[dragIndex] = svgPoint(evt);
+        render();
+    });
+    svg.addEventListener('pointerup', function () { dragIndex = -1; });
+    svg.addEventListener('pointercancel', function () { dragIndex = -1; });
+
+    // double-click an edge to insert a new point there
+    poly.addEventListener('dblclick', function (evt) {
+        var click = svgPoint(evt);
+        var bestIdx = 0, bestDist = Infinity;
+        for (var i = 0; i < points.length; i++) {
+            var a = points[i], b = points[(i + 1) % points.length];
+            var d = distToSegment(click, a, b);
+            if (d < bestDist) { bestDist = d; bestIdx = i; }
+        }
+        points.splice(bestIdx + 1, 0, click);
+        selectedIndex = bestIdx + 1;
+        render();
+    });
+
+    function distToSegment(p, a, b) {
+        var dx = b[0] - a[0], dy = b[1] - a[1];
+        var lenSq = dx * dx + dy * dy;
+        var t = lenSq === 0 ? 0 : ((p[0] - a[0]) * dx + (p[1] - a[1]) * dy) / lenSq;
+        t = Math.max(0, Math.min(1, t));
+        var projX = a[0] + t * dx, projY = a[1] + t * dy;
+        return Math.hypot(p[0] - projX, p[1] - projY);
+    }
+
+    document.addEventListener('keydown', function (evt) {
+        if ((evt.key === 'Delete' || evt.key === 'Backspace') && selectedIndex !== -1) {
+            if (points.length > 3) {
+                points.splice(selectedIndex, 1);
+                selectedIndex = -1;
+                render();
+            } else {
+                statusMsg.textContent = 'Trenger minst 3 punkter.';
+            }
+        }
+    });
+
+    opacitySlider.addEventListener('input', render);
+    document.querySelectorAll('button[data-op]').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+            opacitySlider.value = btn.dataset.op;
+            render();
+        });
+    });
+
+    document.getElementById('copyBtn').addEventListener('click', function () {
+        navigator.clipboard.writeText(pathOutput.value).then(function () {
+            statusMsg.textContent = 'Kopiert! Lim inn i solfilm.html.';
+            setTimeout(function () { statusMsg.textContent = ''; }, 2500);
+        });
+    });
+
+    document.getElementById('resetBtn').addEventListener('click', function () {
+        points = DEFAULT_POINTS.map(function (p) { return p.slice(); });
+        selectedIndex = -1;
+        render();
+    });
+
+    render();
+})();
+</script>
+</body>
+</html>
